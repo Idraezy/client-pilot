@@ -1,9 +1,10 @@
-// components/Dashboard.tsx
+// components/Dashboard.tsx - UPDATED
 import { motion } from 'framer-motion';
-import { Users, Check, Plus} from 'lucide-react';
+import { Users, Check, Plus } from 'lucide-react';
 import { useTheme } from '../ThemeContext';
 import type { Client, Stats } from '../types';
 import { StatusBadge } from './StatusBadge';
+import { ProfileAvatar } from './ProfileAvatar'
 
 interface DashboardProps {
   stats: Stats;
@@ -88,13 +89,13 @@ export function Dashboard({ stats, clients, onViewClients }: DashboardProps) {
               }`}
             >
               <div className="flex items-center gap-4">
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold ${
-                  client.status === 'Active' ? 'bg-green-100 text-green-600' :
-                  client.status === 'Lead' ? 'bg-yellow-100 text-yellow-600' :
-                  'bg-gray-100 text-gray-600'
-                }`}>
-                  {client.name[0]}
-                </div>
+                {/* UPDATED: Use ProfileAvatar component */}
+                <ProfileAvatar 
+                  name={client.name}
+                  profileImage={client.profileImage}
+                  size="sm"
+                  status={client.status}
+                />
                 <div>
                   <p className={`font-medium ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                     {client.name}

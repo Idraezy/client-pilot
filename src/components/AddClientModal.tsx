@@ -1,9 +1,10 @@
-// components/AddClientModal.tsx
+// components/AddClientModal.tsx - UPDATED
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { X } from 'lucide-react';
 import { useTheme } from '../ThemeContext';
 import type { Client } from '../types';
+import { ImageUpload } from './ImageUpload';
 
 interface AddClientModalProps {
   onClose: () => void;
@@ -18,7 +19,8 @@ export function AddClientModal({ onClose, onAdd }: AddClientModalProps) {
     phone: '',
     company: '',
     status: 'Lead' as Client['status'],
-    notes: ''
+    notes: '',
+    profileImage: undefined as string | undefined // NEW
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -41,7 +43,7 @@ export function AddClientModal({ onClose, onAdd }: AddClientModalProps) {
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
         onClick={(e) => e.stopPropagation()}
-        className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-2xl w-full`}
+        className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto`}
       >
         <div className="p-6">
           <div className="flex items-center justify-between mb-6">
@@ -58,7 +60,16 @@ export function AddClientModal({ onClose, onAdd }: AddClientModalProps) {
             </motion.button>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* NEW: Profile Image Upload Section */}
+            <div className={`p-6 rounded-xl ${darkMode ? 'bg-gray-700/50' : 'bg-gray-50'} border-2 border-dashed ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
+              <ImageUpload
+                currentImage={formData.profileImage}
+                onImageChange={(image) => setFormData({ ...formData, profileImage: image })}
+                name={formData.name || 'Client'}
+              />
+            </div>
+
             <div>
               <label className={`block text-sm font-medium mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                 Name *

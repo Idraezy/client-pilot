@@ -1,9 +1,10 @@
-// components/ClientModal.tsx
-import  { useState } from 'react';
+// components/ClientModal.tsx - UPDATED
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { X, Edit2, Trash2, Calendar } from 'lucide-react';
 import { useTheme } from '../ThemeContext';
 import type { Client } from '../types';
+import { ImageUpload } from './ImageUpload';
 
 interface ClientModalProps {
   client: Client;
@@ -76,7 +77,28 @@ export function ClientModal({ client, onClose, onUpdate, onDelete }: ClientModal
             </div>
           </div>
 
-          <div className="space-y-4">
+          <div className="space-y-6">
+            {/* NEW: Profile Image Section */}
+            {isEditing ? (
+              <div className={`p-6 rounded-xl ${darkMode ? 'bg-gray-700/50' : 'bg-gray-50'} border-2 border-dashed ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
+                <ImageUpload
+                  currentImage={formData.profileImage}
+                  onImageChange={(image) => setFormData({ ...formData, profileImage: image })}
+                  name={formData.name}
+                />
+              </div>
+            ) : (
+              formData.profileImage && (
+                <div className="flex justify-center">
+                  <img
+                    src={formData.profileImage}
+                    alt={formData.name}
+                    className="w-24 h-24 rounded-full object-cover border-4 border-blue-500"
+                  />
+                </div>
+              )
+            )}
+
             <div>
               <label className={`block text-sm font-medium mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                 Name

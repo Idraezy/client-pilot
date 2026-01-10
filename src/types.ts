@@ -1,4 +1,4 @@
-// types.ts
+// types.ts - UPDATED
 export interface Client {
   id: string;
   name: string;
@@ -8,6 +8,7 @@ export interface Client {
   status: 'Lead' | 'Active' | 'Completed';
   notes: string;
   createdAt: string;
+  profileImage?: string; // NEW: Base64 encoded image or URL
 }
 
 export type View = 'dashboard' | 'clients' | 'settings';

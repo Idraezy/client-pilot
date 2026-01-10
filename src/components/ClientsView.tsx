@@ -1,11 +1,11 @@
-// components/ClientsView.tsx
-
+// components/ClientsView.tsx - UPDATED
 import { motion } from 'framer-motion';
 import { Mail, Phone } from 'lucide-react';
 import { useTheme } from '../ThemeContext';
 import type { Client } from '../types';
 import { StatusBadge } from './StatusBadge';
 import { EmptyState } from './EmptyState';
+import { ProfileAvatar } from './ProfileAvatar';
 
 interface ClientsViewProps {
   clients: Client[];
@@ -71,13 +71,13 @@ export function ClientsView({
               } shadow-lg cursor-pointer`}
             >
               <div className="flex items-start justify-between mb-4">
-                <div className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg ${
-                  client.status === 'Active' ? 'bg-green-100 text-green-600' :
-                  client.status === 'Lead' ? 'bg-yellow-100 text-yellow-600' :
-                  'bg-gray-100 text-gray-600'
-                }`}>
-                  {client.name[0]}
-                </div>
+                {/* UPDATED: Use ProfileAvatar component */}
+                <ProfileAvatar 
+                  name={client.name}
+                  profileImage={client.profileImage}
+                  size="md"
+                  status={client.status}
+                />
                 <StatusBadge status={client.status} />
               </div>
               <h3 className={`text-lg font-bold mb-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>

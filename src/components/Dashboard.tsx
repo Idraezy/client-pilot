@@ -48,9 +48,9 @@ export function Dashboard({ stats, clients, onViewClients }: DashboardProps) {
             <div className="flex items-center justify-between mb-4">
               <div className={`p-3 rounded-lg ${
                 stat.color === 'blue' ? 'bg-blue-100 text-blue-600' :
-                stat.color === 'green' ? 'bg-green-100 text-green-600' :
-                stat.color === 'yellow' ? 'bg-yellow-100 text-yellow-600' :
-                'bg-gray-100 text-gray-600'
+                stat.color === 'green' ? 'bg-blue-900/40 text-blue-300' :
+                stat.color === 'yellow' ? 'bg-amber-900/40 text-amber-300' :
+                    'bg-green-900/40 text-green-300'
               }`}>
                 <stat.icon size={24} />
               </div>

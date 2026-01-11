@@ -8,9 +8,9 @@ interface StatusBadgeProps {
 
 export function StatusBadge({ status }: StatusBadgeProps) {
   const colors = {
-    Lead: 'bg-yellow-100 text-yellow-700',
-    Active: 'bg-green-100 text-green-700',
-    Completed: 'bg-gray-100 text-gray-700'
+    Lead: 'bg-amber-900/40 text-amber-300',
+    Active: 'bg-blue-900/40 text-blue-300',
+    Completed: 'bg-green-900/40 text-green-300'
   };
 
   return (

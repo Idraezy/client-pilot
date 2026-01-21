@@ -1,4 +1,4 @@
-// components/AddClientModal.tsx - UPDATED
+// components/AddClientModal.tsx - RESPONSIVE UPDATE
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { X } from 'lucide-react';
@@ -20,7 +20,7 @@ export function AddClientModal({ onClose, onAdd }: AddClientModalProps) {
     company: '',
     status: 'Lead' as Client['status'],
     notes: '',
-    profileImage: undefined as string | undefined // NEW
+    profileImage: undefined as string | undefined
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -43,11 +43,11 @@ export function AddClientModal({ onClose, onAdd }: AddClientModalProps) {
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.9, opacity: 0 }}
         onClick={(e) => e.stopPropagation()}
-        className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto`}
+        className={`${darkMode ? 'bg-gray-800' : 'bg-white'} rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto`}
       >
-        <div className="p-6">
-          <div className="flex items-center justify-between mb-6">
-            <h3 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+        <div className="p-4 md:p-6">
+          <div className="flex items-center justify-between mb-4 md:mb-6">
+            <h3 className={`text-xl md:text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
               Add New Client
             </h3>
             <motion.button
@@ -56,13 +56,13 @@ export function AddClientModal({ onClose, onAdd }: AddClientModalProps) {
               onClick={onClose}
               className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-600'}`}
             >
-              <X size={20} />
+              <X size={18} className="md:w-5 md:h-5" />
             </motion.button>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* NEW: Profile Image Upload Section */}
-            <div className={`p-6 rounded-xl ${darkMode ? 'bg-gray-700/50' : 'bg-gray-50'} border-2 border-dashed ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
+          <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+            {/* Profile Image Upload Section */}
+            <div className={`p-4 md:p-6 rounded-xl ${darkMode ? 'bg-gray-700/50' : 'bg-gray-50'} border-2 border-dashed ${darkMode ? 'border-gray-600' : 'border-gray-200'}`}>
               <ImageUpload
                 currentImage={formData.profileImage}
                 onImageChange={(image) => setFormData({ ...formData, profileImage: image })}
@@ -71,7 +71,7 @@ export function AddClientModal({ onClose, onAdd }: AddClientModalProps) {
             </div>
 
             <div>
-              <label className={`block text-sm font-medium mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              <label className={`block text-xs md:text-sm font-medium mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                 Name *
               </label>
               <input
@@ -79,7 +79,7 @@ export function AddClientModal({ onClose, onAdd }: AddClientModalProps) {
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 required
-                className={`w-full px-4 py-2 rounded-lg border ${
+                className={`w-full px-3 md:px-4 py-2 rounded-lg border text-sm md:text-base ${
                   darkMode 
                     ? 'bg-gray-700 border-gray-600 text-white' 
                     : 'bg-gray-50 border-gray-200 text-gray-900'
@@ -88,7 +88,7 @@ export function AddClientModal({ onClose, onAdd }: AddClientModalProps) {
             </div>
 
             <div>
-              <label className={`block text-sm font-medium mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              <label className={`block text-xs md:text-sm font-medium mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                 Email *
               </label>
               <input
@@ -96,7 +96,7 @@ export function AddClientModal({ onClose, onAdd }: AddClientModalProps) {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 required
-                className={`w-full px-4 py-2 rounded-lg border ${
+                className={`w-full px-3 md:px-4 py-2 rounded-lg border text-sm md:text-base ${
                   darkMode 
                     ? 'bg-gray-700 border-gray-600 text-white' 
                     : 'bg-gray-50 border-gray-200 text-gray-900'
@@ -105,7 +105,7 @@ export function AddClientModal({ onClose, onAdd }: AddClientModalProps) {
             </div>
 
             <div>
-              <label className={`block text-sm font-medium mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              <label className={`block text-xs md:text-sm font-medium mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                 Phone *
               </label>
               <input
@@ -113,7 +113,7 @@ export function AddClientModal({ onClose, onAdd }: AddClientModalProps) {
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 required
-                className={`w-full px-4 py-2 rounded-lg border ${
+                className={`w-full px-3 md:px-4 py-2 rounded-lg border text-sm md:text-base ${
                   darkMode 
                     ? 'bg-gray-700 border-gray-600 text-white' 
                     : 'bg-gray-50 border-gray-200 text-gray-900'
@@ -122,14 +122,14 @@ export function AddClientModal({ onClose, onAdd }: AddClientModalProps) {
             </div>
 
             <div>
-              <label className={`block text-sm font-medium mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              <label className={`block text-xs md:text-sm font-medium mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                 Company
               </label>
               <input
                 type="text"
                 value={formData.company}
                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                className={`w-full px-4 py-2 rounded-lg border ${
+                className={`w-full px-3 md:px-4 py-2 rounded-lg border text-sm md:text-base ${
                   darkMode 
                     ? 'bg-gray-700 border-gray-600 text-white' 
                     : 'bg-gray-50 border-gray-200 text-gray-900'
@@ -138,13 +138,13 @@ export function AddClientModal({ onClose, onAdd }: AddClientModalProps) {
             </div>
 
             <div>
-              <label className={`block text-sm font-medium mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              <label className={`block text-xs md:text-sm font-medium mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                 Status
               </label>
               <select
                 value={formData.status}
                 onChange={(e) => setFormData({ ...formData, status: e.target.value as Client['status'] })}
-                className={`w-full px-4 py-2 rounded-lg border ${
+                className={`w-full px-3 md:px-4 py-2 rounded-lg border text-sm md:text-base ${
                   darkMode 
                     ? 'bg-gray-700 border-gray-600 text-white' 
                     : 'bg-gray-50 border-gray-200 text-gray-900'
@@ -157,14 +157,14 @@ export function AddClientModal({ onClose, onAdd }: AddClientModalProps) {
             </div>
 
             <div>
-              <label className={`block text-sm font-medium mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              <label className={`block text-xs md:text-sm font-medium mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
                 Notes
               </label>
               <textarea
                 value={formData.notes}
                 onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                 rows={4}
-                className={`w-full px-4 py-2 rounded-lg border ${
+                className={`w-full px-3 md:px-4 py-2 rounded-lg border text-sm md:text-base ${
                   darkMode 
                     ? 'bg-gray-700 border-gray-600 text-white' 
                     : 'bg-gray-50 border-gray-200 text-gray-900'
@@ -172,12 +172,12 @@ export function AddClientModal({ onClose, onAdd }: AddClientModalProps) {
               />
             </div>
 
-            <div className="flex gap-3 mt-6">
+            <div className="flex flex-col sm:flex-row gap-3 mt-6">
               <motion.button
                 type="submit"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="flex-1 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 font-medium"
+                className="flex-1 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 font-medium text-sm md:text-base"
               >
                 Add Client
               </motion.button>
@@ -186,7 +186,7 @@ export function AddClientModal({ onClose, onAdd }: AddClientModalProps) {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={onClose}
-                className={`flex-1 px-4 py-2 rounded-lg font-medium ${
+                className={`flex-1 px-4 py-2 rounded-lg font-medium text-sm md:text-base ${
                   darkMode ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-700'
                 }`}
               >

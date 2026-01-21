@@ -1,4 +1,4 @@
-/* index.css */
+/* index.css - RESPONSIVE UPDATE */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -20,6 +20,7 @@ body {
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -33,4 +34,43 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+/* Hide scrollbar for horizontal scroll on mobile */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Prevent horizontal scroll on mobile */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Touch optimization for mobile */
+@media (hover: none) and (pointer: coarse) {
+  button, a {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Safe area for notched devices (iPhone X+) */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: min(0px, env(safe-area-inset-left));
+    padding-right: min(0px, env(safe-area-inset-right));
+  }
+}
+
+/* Improve text rendering on mobile */
+@media screen and (max-width: 768px) {
+  body {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
 }

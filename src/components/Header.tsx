@@ -56,7 +56,7 @@ export function Header({ searchQuery, setSearchQuery, onAddClient, onMenuClick }
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={toggleDarkMode}
-            className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-yellow-400' : 'bg-gray-100 text-gray-600'}`}
+            className={`p-2 rounded-lg ${darkMode ? 'bg-gray-700 text-blue-400' : 'bg-gray-100 text-gray-600'}`}
           >
             {darkMode ? <Sun size={18} /> : <Moon size={18} />}
           </motion.button>

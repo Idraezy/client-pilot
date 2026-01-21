@@ -1,4 +1,4 @@
-// App.tsx
+// App.tsx - RESPONSIVE UPDATE
 import { useState, useEffect } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { ThemeContext } from './ThemeContext';
@@ -22,6 +22,7 @@ export default function App() {
   const [selectedClient, setSelectedClient] = useState<Client | null>(null);
   const [isAddingClient, setIsAddingClient] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // NEW
 
   // Load data from localStorage or use mock data
   useEffect(() => {
@@ -49,6 +50,11 @@ export default function App() {
       localStorage.setItem('clientpilot_clients', JSON.stringify(clients));
     }
   }, [clients]);
+
+  // Close mobile menu when view changes
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [currentView]);
 
   const toggleDarkMode = () => {
     const newMode = !darkMode;
@@ -97,12 +103,22 @@ export default function App() {
           <LoadingScreen darkMode={darkMode} />
         ) : (
           <div className="flex h-screen overflow-hidden">
-            <Sidebar currentView={currentView} setCurrentView={setCurrentView} stats={stats} />
+            {/* Sidebar - Responsive */}
+            <Sidebar 
+              currentView={currentView} 
+              setCurrentView={setCurrentView} 
+              stats={stats}
+              isMobileMenuOpen={isMobileMenuOpen}
+              setIsMobileMenuOpen={setIsMobileMenuOpen}
+            />
+            
+            {/* Main Content */}
             <main className="flex-1 overflow-y-auto">
               <Header 
                 searchQuery={searchQuery}
                 setSearchQuery={setSearchQuery}
                 onAddClient={() => setIsAddingClient(true)}
+                onMenuClick={() => setIsMobileMenuOpen(true)}
               />
               <AnimatePresence mode="wait">
                 {currentView === 'dashboard' && (
